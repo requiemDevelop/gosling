@@ -1,37 +1,22 @@
 package com.spring.service;
 
+import com.spring.dto.api.UpdateUserPasswordDto;
+import com.spring.dto.api.UpdateUserProfileDto;
 import com.spring.dto.model.user.UserDto;
+import com.spring.entity.User;
 
 public interface UserService {
-    /**
-     * Register a new user
-     *
-     * @param userDto
-     * @return
-     */
-    UserDto signUp(UserDto userDto);
 
-    /**
-     * Log in the user
-     *
-     * @param userDto
-     * @return
-     */
-    UserDto signIn(UserDto userDto);
+    User getUserById(String userId);
 
-    /**
-     * Update profile of the user
-     *
-     * @param userDto
-     * @return
-     */
-    UserDto updateProfile(UserDto userDto);
+    User getUserByEmail(String email);
 
-    /**
-     * Update password
-     *
-     * @param newPassword
-     * @return
-     */
-    UserDto changePassword(UserDto userDto, String newPassword);
+    User getUserByUsername(String username);
+
+    User updateProfile(UpdateUserProfileDto updateUserProfileDto);
+
+    User changePassword(UpdateUserPasswordDto updateUserPasswordDto);
+
+    User createUser(UserDto userDto);
+
 }

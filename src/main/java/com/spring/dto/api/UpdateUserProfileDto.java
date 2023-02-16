@@ -1,11 +1,13 @@
-package com.spring.dto.model.user;
+package com.spring.dto.api;
+
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,18 +22,16 @@ import lombok.experimental.Accessors;
 @ToString
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserDto {
+public class UpdateUserProfileDto {
+
+    @com.spring.util.annotation.UUID
+    private UUID userId;
 
     @Email
-	@NotEmpty
     private String email;
 
-	@NotEmpty
-	@Size(min = 6, max = 40, message = "Password length must be between 6 and 40 characters")
-    private String password;
-
-	@NotEmpty
-	@Size(min = 4, max = 25, message = "Username length must be between 4 and 25 characters")
+    @Max(25)
+    @Min(4)
     private String username;
     
 }
